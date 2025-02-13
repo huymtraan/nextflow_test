@@ -54,10 +54,10 @@
             "description": "Parameters for Bowtie2 or BWA alignment.",
             "properties": {
                 "aligner": {
-                    "type": "string",
-                    "default": "bowtie",
+                "type": "string",
+                "default": "bowtie",
                     "description": "Specifies the aligner to use.",
-                    "enum": ["bowtie2", "bwa"],
+                    "enum": ["bowtie", "bwa"],
                     "fa_icon": "fas fa-map-signs"
                 },
                 "reference": {
