@@ -1,0 +1,77 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Simple Nextflow Pipeline Schema",
+    "description": "Schema for a simplified Nextflow pipeline handling QC, trimming, and mapping.",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["input", "outdir"],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to input FASTQ files or a CSV file listing sample information.",
+                    "fa_icon": "fas fa-file-upload"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where results will be saved.",
+                    "fa_icon": "fas fa-folder-open"
+                }
+            }
+        },
+        "qc_trimming_options": {
+            "title": "Quality Control & Trimming Options",
+            "type": "object",
+            "description": "Parameters for FastQC and Fastp trimming.",
+            "properties": {
+                "skip_fastqc": {
+                    "type": "boolean",
+                    "description": "Skip FastQC analysis.",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "trimmer": {
+                    "type": "string",
+                    "default": "fastp",
+                    "description": "Specifies the trimming tool to use.",
+                    "enum": ["fastp"],
+                    "fa_icon": "fas fa-cut"
+                },
+                "extra_fastp_args": {
+                    "type": "string",
+                    "description": "Extra arguments to pass to Fastp.",
+                    "fa_icon": "fas fa-plus"
+                }
+            }
+        },
+        "alignment_options": {
+            "title": "Alignment options",
+            "type": "object",
+            "description": "Parameters for Bowtie2 or BWA alignment.",
+            "properties": {
+                "aligner": {
+                    "type": "string",
+                    "default": "bowtie2",
+                    "description": "Specifies the aligner to use.",
+                    "enum": ["bowtie2", "bwa"],
+                    "fa_icon": "fas fa-map-signs"
+                },
+                "reference": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to reference genome index.",
+                    "fa_icon": "fas fa-dna"
+                }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "#/$defs/input_output_options" },
+        { "$ref": "#/$defs/qc_trimming_options" },
+        { "$ref": "#/$defs/alignment_options" }
+    ]
+}
