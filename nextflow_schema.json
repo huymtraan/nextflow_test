@@ -55,7 +55,7 @@
             "properties": {
                 "aligner": {
                     "type": "string",
-                    "default": "bowtie2",
+                    "default": "bowtie",
                     "description": "Specifies the aligner to use.",
                     "enum": ["bowtie2", "bwa"],
                     "fa_icon": "fas fa-map-signs"
