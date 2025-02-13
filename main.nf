@@ -6,10 +6,10 @@ include { fastp } from "./modules/fastp.nf"
 include { multiqc } from "./modules/multiqc.nf"
 include { bowtie } from "./modules/bowtie.nf"
 
-workflow {
+workflow nipt {
     // Read input CSV with sample names and single-end FASTQ files
     Channel
-        .fromPath(params.input_csv)
+        .fromPath(params.input)
         .splitCsv(header: true)
         .map { row ->
             def sample_name = row.sample
