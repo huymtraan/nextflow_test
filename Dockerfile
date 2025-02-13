@@ -80,16 +80,4 @@ RUN pip3 install --no-cache-dir \
     multiqc \
     git+https://github.com/CenterForMedicalGeneticsGhent/WisecondorX
 
-# Set working directory
-WORKDIR /app
-COPY bin/ /app/bin/
-COPY assets /app/assets
 
-# Set execution permissions for scripts
-RUN chmod +x /app/bin/*.py
-
-# Add scripts to PATH
-ENV PATH="/app/bin:${PATH}"
-
-# Default command
-CMD ["python3", "--version"]
